@@ -1,8 +1,19 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import os
+from dotenv import load_dotenv
 
-client_id = '50416c5c4af24a108fc2b5d32b5941bd'
-client_secret = '4280fe7a0db94c1cb75402f5f763a488'
+# If the .env file is outside of the repo, specify the path.
+# dotenv_path = "/home/youruser/secure-config/.env"
+
+# Load the .env file from the specified location
+# load_dotenv(dotenv_path)
+
+# Currently using default location.
+load_dotenv()
+
+client_id = os.getenv('client_id')
+client_secret = os.getenv('client_secret')
 
 auth_manager = SpotifyClientCredentials(client_id=client_id,client_secret=client_secret)
 sp = spotipy.Spotify(auth_manager=auth_manager)
